@@ -1,0 +1,5 @@
+4
+0	2	32	36	333	./Resources/Sprites/GoS_SunSprites.bmp
+1	1	45	15	-1	./Resources/Sprites/GoS_CeilingSlime.bmp
+2	1	37	36	-1	./Resources/Sprites/GoS_Fire.bmp
+3   2   640 480 666 ./Resources/Sprites/GoS_Title.bmp
