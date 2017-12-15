@@ -877,7 +877,16 @@ void Level1State::draw()
 
 	//Set renderer back to main window
 	SDL_SetRenderTarget( renderTarget, NULL );
-	SDL_Rect preScaleRect = {11, 12, 206*3, 152*3};
+	//SDL_Rect preScaleRect = {11, 12, 206*3, 152*3};
+
+	int width_N = GamePanel::WINDOW_WIDTH/206;
+	int width_R = GamePanel::WINDOW_WIDTH%206;
+	int height_N = GamePanel::WINDOW_HEIGHT/152;
+	int height_R = GamePanel::WINDOW_HEIGHT%152;
+	
+	//printf("width_N = %d, width_R = %d, height_N = %d, height_R = %d\n", width_N, width_R, height_N, height_R);
+
+	SDL_Rect preScaleRect = {width_R/2, height_R/2, 206*width_N, 152*height_N};
 	SDL_RenderCopy(renderTarget, preScaleTexture, NULL, &preScaleRect);
 	//SDL_RenderCopy(renderTarget, gameWorldTexture, NULL, &scaleRect);
 
@@ -1184,7 +1193,35 @@ void TitleState::update()
 }
 void TitleState::draw()
 {
-	SDL_Rect posRect = {0, 0, sprite_rects[0].w, sprite_rects[0].h};
+	//int width_N = GamePanel::WINDOW_WIDTH/206;
+    //int width_R = GamePanel::WINDOW_WIDTH%206;
+    //int height_N = GamePanel::WINDOW_HEIGHT/152;
+    //int height_R = GamePanel::WINDOW_HEIGHT%152;
+
+	SDL_Rect posRect;
+
+	double w_fract = GamePanel::WINDOW_WIDTH;
+	w_fract /= sprite_rects[0].w;
+
+	double h_fract = GamePanel::WINDOW_HEIGHT;
+    h_fract /= sprite_rects[0].h;
+
+	if (h_fract < w_fract)
+	{
+		SDL_Rect posRect_ = {0, 0, (int)(h_fract*sprite_rects[0].w), (int)(h_fract*sprite_rects[0].h)};
+		posRect_.x = (GamePanel::WINDOW_WIDTH - posRect_.w)/2;
+		posRect = posRect_;
+	}
+	else
+	{
+		SDL_Rect posRect_ = {0, 0, (int)(h_fract*sprite_rects[0].w), (int)(h_fract*sprite_rects[0].h)};
+		posRect_.y = (GamePanel::WINDOW_HEIGHT - posRect_.h)/2;
+        posRect = posRect_;
+	}
+
+
+
+	//SDL_Rect posRect = {0, 0, sprite_rects[0].w, sprite_rects[0].h};
     SDL_Rect cropRect = titleAnimation.getImageRect();
     SDL_RenderCopy(renderTarget, titleAnimation.getFrameTexture(), &cropRect, &posRect);
 }

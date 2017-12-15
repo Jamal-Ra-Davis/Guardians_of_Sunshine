@@ -4,6 +4,8 @@
 #include <stdio.h>
 
 bool *GamePanel::isRunningControl;
+int GamePanel::WINDOW_WIDTH;
+int GamePanel::WINDOW_HEIGHT;
 
 GamePanel::GamePanel()
 {
@@ -44,12 +46,17 @@ int GamePanel::init()
 	//window = SDL_CreateWindow(window_name.c_str(), SDL_WINDOWPOS_CENTERED,
     //                            SDL_WINDOWPOS_CENTERED, (int)(WIDTH*3), (int)(HEIGHT*3), SDL_WINDOW_SHOWN /*| SDL_WINDOW_FULLSCREEN_DESKTOP*/);
 	window = SDL_CreateWindow(window_name.c_str(), SDL_WINDOWPOS_CENTERED,
-                                SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN /*| SDL_WINDOW_FULLSCREEN_DESKTOP*/);
+                                SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP);
 	if (window == NULL)
     {
         printf("Window creation error: %s\n", SDL_GetError());
         return 1;
     }
+
+	SDL_GetWindowSize(window, &WINDOW_WIDTH, &WINDOW_HEIGHT);
+
+	printf("Window width = %d, window height = %d\n", WINDOW_WIDTH, WINDOW_HEIGHT);
+
 
 	renderTarget = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (renderTarget == NULL)

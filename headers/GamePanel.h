@@ -26,6 +26,9 @@ class GamePanel
 		static bool *isRunningControl;
 		static const int WIDTH = 206;//214;//320
 		static const int HEIGHT = 116;//141;//240
+
+		static int WINDOW_WIDTH;
+		static int WINDOW_HEIGHT;
 		GamePanel();
 		~GamePanel();
 
