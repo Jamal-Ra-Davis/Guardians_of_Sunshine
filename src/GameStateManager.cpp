@@ -7,6 +7,7 @@ GameStateManager::GameStateManager(SDL_Renderer *renderTarget_)
 	renderTarget = renderTarget_;
 	//currentState = MENU_STATE;
 	currentState = TITLE_STATE;
+
 	//currentState = WIN_STATE;
 	score = 0;
 	gameStates = new GameState*[NUM_STATES];

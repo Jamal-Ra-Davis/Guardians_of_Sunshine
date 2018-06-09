@@ -77,7 +77,7 @@ int GamePanel::init()
 	
 	//SDL_SetRenderDrawColor(renderTarget, 0xFF, 0, 0, 0xFF);
 	SDL_SetRenderDrawColor(renderTarget, 0, 0, 0, 0xFF);
-
+	SDL_ShowCursor(SDL_DISABLE);
 	return 0;	
 }
 int GamePanel::run()

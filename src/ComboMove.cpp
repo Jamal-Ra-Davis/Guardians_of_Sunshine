@@ -7,7 +7,7 @@ ComboMove::ComboMove(TileMap *tm, SDL_Renderer *renderTarget_) : MapObject(tm, r
     active = false;
 	active_trigger = false;
     spin = false;
-    combo_time = 11000;//~8 seconds 
+    combo_time = 15000;//~8 seconds 
 	combo_pass = false;
 	combo_fail = false;
 

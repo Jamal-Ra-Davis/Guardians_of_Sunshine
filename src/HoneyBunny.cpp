@@ -70,7 +70,6 @@ HoneyBunny::HoneyBunny(TileMap *tm, SDL_Renderer *renderTarget_) : Enemy(tm, ren
 			{
 				int i_ = j/11 + 1;
 				int j_ = j % 11;
-				printf("i=%d, i_ = %d\n", i,  i_);
             	sprite_rects[i][j].x = j_*width;
             	sprite_rects[i][j].y = i_*height;
             	sprite_rects[i][j].w = width;
@@ -120,7 +119,7 @@ HoneyBunny::HoneyBunny(TileMap *tm, SDL_Renderer *renderTarget_) : Enemy(tm, ren
     {
         slimeSprite_rects[i] = NULL;
         slimeSprite_rects[i] = new SDL_Rect[slimeFrameNumbers[i]];
-        printf("DEBUG: slimeFrameNumbers[%d] = %d\n", i, slimeFrameNumbers[i]);
+        //printf("DEBUG: slimeFrameNumbers[%d] = %d\n", i, slimeFrameNumbers[i]);
     }
 
 	slimeAnimationTexture = LoadTexture("./Resources/Sprites/Enemies/GoS_SlimeDripSprites.bmp", renderTarget);

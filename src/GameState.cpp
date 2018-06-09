@@ -880,13 +880,20 @@ void Level1State::draw()
 	//SDL_Rect preScaleRect = {11, 12, 206*3, 152*3};
 
 	int width_N = GamePanel::WINDOW_WIDTH/206;
-	int width_R = GamePanel::WINDOW_WIDTH%206;
+	//int width_R = GamePanel::WINDOW_WIDTH%206;
 	int height_N = GamePanel::WINDOW_HEIGHT/152;
-	int height_R = GamePanel::WINDOW_HEIGHT%152;
-	
-	//printf("width_N = %d, width_R = %d, height_N = %d, height_R = %d\n", width_N, width_R, height_N, height_R);
+	//int height_R = GamePanel::WINDOW_HEIGHT%152;
+	int scale = width_N;
+	if (width_N > height_N)
+    {
+        scale = height_N;
+    }
+	int width_R = GamePanel::WINDOW_WIDTH - 206*scale;
+    int height_R = GamePanel::WINDOW_HEIGHT - 152*scale;	
 
-	SDL_Rect preScaleRect = {width_R/2, height_R/2, 206*width_N, 152*height_N};
+
+	//SDL_Rect preScaleRect = {width_R/2, height_R/2, 206*width_N, 152*height_N};
+	SDL_Rect preScaleRect = {width_R/2, height_R/2, 206*scale, 152*scale};
 	SDL_RenderCopy(renderTarget, preScaleTexture, NULL, &preScaleRect);
 	//SDL_RenderCopy(renderTarget, gameWorldTexture, NULL, &scaleRect);
 
@@ -1572,8 +1579,27 @@ void WinState::draw()
     SDL_RenderCopy(renderTarget, bmoAnimation.getFrameTexture(), &cropRect, &posRect);
 
 	//---------------------
+	//SDL_SetRenderTarget( renderTarget, NULL );
+    //SDL_Rect preScaleRect = {11, 12, 206*3, 152*3};
+    //SDL_RenderCopy(renderTarget, preScaleTexture, NULL, &preScaleRect);
+
+
+	//----------------------
 	SDL_SetRenderTarget( renderTarget, NULL );
-    SDL_Rect preScaleRect = {11, 12, 206*3, 152*3};
+
+	int width_N = GamePanel::WINDOW_WIDTH/206;
+	int height_N = GamePanel::WINDOW_HEIGHT/152;
+	int scale = width_N;
+	if (width_N > height_N)
+	{
+		scale = height_N;
+	}
+
+	int width_R = GamePanel::WINDOW_WIDTH - 206*scale;
+	int height_R = GamePanel::WINDOW_HEIGHT - 152*scale;
+
+	//SDL_Rect preScaleRect = {width_R/2, height_R/2, 206*width_N, 152*height_N};
+	SDL_Rect preScaleRect = {width_R/2, height_R/2, 206*scale, 152*scale};
     SDL_RenderCopy(renderTarget, preScaleTexture, NULL, &preScaleRect);	
 }
 void WinState::keyPressed(int k)
