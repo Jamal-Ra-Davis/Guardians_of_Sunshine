@@ -14,6 +14,7 @@ class SleepySam : public Enemy
 		bool playedPoof;
 		double poof_x, poof_y;
 		double animationTimer;
+		bool animation_flag;
 		bool finished_eating;
 		ComboMove *comboMove;
 

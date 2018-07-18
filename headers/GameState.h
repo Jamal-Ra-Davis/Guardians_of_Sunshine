@@ -190,6 +190,7 @@ class WinState : public GameState
 			
 		//AudioPlayer *text_Fin_SFX;		
 		double timer;
+		bool animation_flag;
 
 	public:
 		enum State{START, PAN, FINAL};

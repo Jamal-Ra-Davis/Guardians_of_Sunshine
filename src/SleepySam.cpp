@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "../headers/SleepySam.h"
 #include "../headers/SDL_Helpers.h"
 
@@ -19,6 +20,7 @@ SleepySam::SleepySam(TileMap *tm, SDL_Renderer *renderTarget_) : Enemy(tm, rende
 	playedPoof = false;
 	finished_eating = false;
 	animationTimer = -1;
+	animation_flag = false;
 
 	comboMove = NULL;
 
@@ -139,6 +141,7 @@ void SleepySam::reset()
     playedPoof = false;
     finished_eating = false;
     animationTimer = -1;
+	animation_flag = false;
 
 	currentAction = IDLE;
     animation.setFrames(animationTexture, sprite_rects[currentAction], frameNumbers[currentAction]);
@@ -216,14 +219,15 @@ void SleepySam::update()
                     frog_sounds[POOP_FALL_SFX]->play(0);
 				}
 			*/
-				if (animation.hasPlayedOnce() && animationTimer < 0)
+				if (animation.hasPlayedOnce() && !animation_flag)
 				{
+					animation_flag = true;
 					animationTimer = getMs();
 				}
-				if (animationTimer >= 0 && getMs() - animationTimer >= 500)
+				if (animation_flag && ((getMs() - animationTimer) >= 500))
                 {
-                    animationTimer = -1;
-				
+					animation_flag = false;			
+	
 					currentAction = POOP_FALL;
                     animation.setFrames(animationTexture, sprite_rects[currentAction], frameNumbers[currentAction], true);
                     animation.setDelay(75);
@@ -247,11 +251,12 @@ void SleepySam::update()
 			}
 			else if (currentAction == POOP_FALL)
 			{
-				if (animation.hasPlayedOnce() && animationTimer < 0)
+				if (animation.hasPlayedOnce() && !animation_flag)
                 {
                     animationTimer = getMs();   
+					animation_flag = true;
                 }
-				if (animationTimer >= 0 && getMs() - animationTimer >= 1500)
+				if (animation_flag && ((getMs() - animationTimer) >= 1500))
                 {
                     finished_eating = true; 
                 }

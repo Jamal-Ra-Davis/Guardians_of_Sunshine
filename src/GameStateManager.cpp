@@ -1,5 +1,5 @@
+#include <stdio.h>
 #include "../headers/GameStateManager.h"
-
 
 
 GameStateManager::GameStateManager(SDL_Renderer *renderTarget_)

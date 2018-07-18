@@ -1,6 +1,7 @@
 #include "../headers/Numbers.h"
 #include "../headers/SDL_Helpers.h"
 #include <math.h>
+#include <stdio.h>
 
 Numbers::Numbers(SDL_Renderer *renderTarget_, int digits_, int spacing_, int x_, int y_, bool visible_)
 {
@@ -29,11 +30,16 @@ void Numbers::draw(int number)
 	if (digits <= 0 || digits > MAX_DIGITS)
 		return;
 	SDL_Rect numRect = {x+xOffset, y+yOffset, NUM_WIDTH, NUM_HEIGHT};
-	int mod = (int)pow(10, digits);
+	int mod = (int)(pow(10, digits) + 0.5);
 	number = number % mod;
 	for (int i=0; i<digits; i++)
 	{
 		mod /= 10;
+		if (mod == 0)
+		{
+			printf("Error: Dividing by zero\n");
+			break;
+		}
 		int dig = number/mod;
 		number = number % mod;
 		//printf("%d-", dig);

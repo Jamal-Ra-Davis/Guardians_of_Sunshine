@@ -1,4 +1,5 @@
 #include <time.h>
+#include <stdio.h>
 
 #include "../headers/GoS_Player.h"
 #include "../headers/SDL_Helpers.h"

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "../headers/ComboMove.h"
 #include "../headers/SDL_Helpers.h"
 
@@ -235,10 +236,17 @@ void ComboMove::update()
 		{
 			if (currentAction != SAD_UP)
             {
+				int frame_flag = -1;
+				if (currentAction == UP)
+					frame_flag = animation.getFrame();
+
                 currentAction = SAD_UP;
                 animation.setFrames(animationTexture, sprite_rects[currentAction], frameNumbers[currentAction], true);
                 animation.setDelay(100);
                 width = sprite_rects[currentAction][animation.getFrame()].w;
+	
+				if (frame_flag > 0)
+					animation.setFrame(frame_flag);
             }
 		}
 	}
@@ -258,10 +266,17 @@ void ComboMove::update()
 		{
 			if (currentAction != SAD_DOWN)
             {
+				int frame_flag = -1;
+                if (currentAction == DOWN)
+                    frame_flag = animation.getFrame();
+
                 currentAction = SAD_DOWN;
                 animation.setFrames(animationTexture, sprite_rects[currentAction], frameNumbers[currentAction], true);
                 animation.setDelay(100);
                 width = sprite_rects[currentAction][animation.getFrame()].w;
+
+				if (frame_flag > 0)
+                    animation.setFrame(frame_flag);
             }
 		}
 	}
@@ -281,10 +296,17 @@ void ComboMove::update()
 		{
 			if (currentAction != SAD_RIGHT)
             {
+				int frame_flag = -1;
+                if (currentAction == RIGHT)
+                    frame_flag = animation.getFrame();
+
                 currentAction = SAD_RIGHT;
                 animation.setFrames(animationTexture, sprite_rects[currentAction], frameNumbers[currentAction], true);
                 animation.setDelay(100);
                 width = sprite_rects[currentAction][animation.getFrame()].w;
+
+				if (frame_flag > 0)
+                    animation.setFrame(frame_flag);
             }
 		}
 	}
@@ -304,10 +326,17 @@ void ComboMove::update()
 		{
 			if (currentAction != SAD_LEFT)
             {
+				int frame_flag = -1;
+                if (currentAction == LEFT)
+                    frame_flag = animation.getFrame();
+
                 currentAction = SAD_LEFT;
                 animation.setFrames(animationTexture, sprite_rects[currentAction], frameNumbers[currentAction], true);
                 animation.setDelay(100);
                 width = sprite_rects[currentAction][animation.getFrame()].w;
+
+				if (frame_flag > 0)
+                    animation.setFrame(frame_flag);
             }
 		}
 	}
@@ -327,10 +356,17 @@ void ComboMove::update()
 		{
 			if (currentAction != SAD_JUMP)
             {
+				int frame_flag = -1;
+                if (currentAction == JUMP)
+                    frame_flag = animation.getFrame();
+
                 currentAction = SAD_JUMP;
                 animation.setFrames(animationTexture, sprite_rects[currentAction], frameNumbers[currentAction], true);
                 animation.setDelay(60);
                 width = sprite_rects[currentAction][animation.getFrame()].w;
+
+				if (frame_flag > 0)
+                    animation.setFrame(frame_flag);
             }
 		}
 	}

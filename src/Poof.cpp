@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "../headers/Poof.h"
 #include "../headers/SDL_Helpers.h"
 #include "../headers/Numbers.h"

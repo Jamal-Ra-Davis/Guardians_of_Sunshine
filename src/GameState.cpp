@@ -1464,6 +1464,7 @@ void WinState::init()
 	textSFX[TEXT_MID_SFX] = new AudioPlayer("./Resources/SFX/BMOGame_Footstep.wav", false);
 	textSFX[TEXT_END_SFX] = new AudioPlayer("./Resources/SFX/BMOGame_Jump.wav", false);
     timer = -1;
+	animation_flag = false;
 	counter = 0;
 	state = START;
 }
@@ -1473,8 +1474,11 @@ void WinState::update()
 	{
 		case START:
 		{
-			if (timer < 0)
+			if (!animation_flag)
+			{
 				timer = getMs();
+				animation_flag = true;
+			}
 			else
 			{
 				if (getMs() - timer >= text0_delays[counter])
@@ -1494,7 +1498,8 @@ void WinState::update()
 					text0[counter]->setVisible(true);
 					counter++;
 					timer = -1;	
-										
+					animation_flag = false;								
+	
 					if (counter >= 5)
 					{
 						counter = 0;
@@ -1506,8 +1511,11 @@ void WinState::update()
 		}
 		case PAN:
 		{
-			if (timer < 0)
+			if (!animation_flag)
+			{
 				timer = getMs();
+				animation_flag = true;
+			}
 			else
 			{
 				if (getMs() - timer >= 2500)
@@ -1518,6 +1526,7 @@ void WinState::update()
 				{
 					yScene = yFinal;
 					timer = -1;
+					animation_flag = false;
 					state = FINAL;
 				}
 			}

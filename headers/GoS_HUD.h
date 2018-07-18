@@ -4,6 +4,8 @@
 #include "../headers/SDL_Helpers.h"
 #include "../headers/Numbers.h"
 
+#define NUM_HUD_DIGITS 4
+
 class GoS_HUD
 {
 	private:

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "../headers/HoneyBunny.h"
 #include "../headers/SDL_Helpers.h"
 

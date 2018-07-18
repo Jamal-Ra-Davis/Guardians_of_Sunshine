@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "../headers/GoS_HUD.h"
 
 
@@ -33,7 +34,7 @@ GoS_HUD::GoS_HUD(SDL_Renderer *renderTarget_, int x, int y)
 
 
 	scoreTracker = NULL;
-    scoreTracker = new Numbers(renderTarget, 4, 5, 0, 0);
+    scoreTracker = new Numbers(renderTarget, NUM_HUD_DIGITS, 5, 0, 0);
 	scoreTracker->setX(hudBgRect.x + hudBgRect.w/2 - scoreTracker->getWidth()/2);
 	scoreTracker->setY(hudBgRect.y + hudBgRect.h/2 - scoreTracker->getHeight()/2);
 }

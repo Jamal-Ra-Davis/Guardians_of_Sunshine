@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include "../headers/BouncyBee.h"
 #include "../headers/SDL_Helpers.h"
 
