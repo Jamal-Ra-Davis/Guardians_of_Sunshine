@@ -1,8 +1,6 @@
 #include "../headers/InputBuffer.h"
 
-InputBuffer::InputBuffer()
-{
-	int temp[18] = {
+int InputBuffer::data_test[COMBO_LENGTH] = {
                         UP,
                         DOWN,
                         LEFT,
@@ -23,7 +21,30 @@ InputBuffer::InputBuffer()
                         JUMP
                     };
 
-	max_list_size = 18;
+InputBuffer::InputBuffer()
+{
+	int temp[COMBO_LENGTH] = {
+                        UP,
+                        DOWN,
+                        LEFT,
+                        LEFT,
+                        RIGHT,
+                        RIGHT,
+                        DOWN,
+                        SPIN,
+                        DOWN,
+                        UP,
+                        LEFT,
+                        RIGHT,
+                        LEFT,
+                        DOWN,
+                        SPIN,
+                        UP,
+                        DOWN,
+                        JUMP
+                    };
+
+	max_list_size = COMBO_LENGTH;//max_list_size looks like a constant. can probably remove and just use COMBO_LENGTH
 	for (int i=0; i<max_list_size; i++)
 	{
 		data[i] = temp[i];

@@ -1,9 +1,9 @@
-#include <stdio.h>
 #include "../headers/GameState.h"
 #include "../headers/SDL_Helpers.h"
 #include "../headers/GamePanel.h"
 #include "../headers/TileMap.h"
 #include "../headers/Slugger.h"
+#include "../headers/InputBuffer.h"
 
 MenuState::MenuState(GameStateManager *gsm_, SDL_Renderer *renderTarget_) 
 {
@@ -138,13 +138,11 @@ Level1State::Level1State(GameStateManager *gsm_, SDL_Renderer *renderTarget_)
 	tileMap = NULL;
 	bgTileMap = NULL;
 	bg = NULL;
-	player = NULL;
 	gos_player = NULL;
 	//bouncyBee = NULL;
 	sleepySam = NULL;
 	comboMove = NULL;
 
-	hud = NULL;
 	bgm = NULL;
 	level_sounds = NULL;
 
@@ -166,6 +164,7 @@ Level1State::Level1State(GameStateManager *gsm_, SDL_Renderer *renderTarget_)
 
 
 	gos_hud = NULL;
+	gos_startmenu = NULL;
 
 	preScaleTexture = NULL;
 	gameWorldTexture = NULL;
@@ -211,10 +210,6 @@ Level1State::~Level1State()
 		delete bg;
 	bg = NULL;
 
-	if (player)
-		delete player;
-	player = NULL;
-
 	if (gos_player)
         delete gos_player;
     gos_player = NULL;
@@ -224,10 +219,6 @@ Level1State::~Level1State()
 	//bouncyBee = NULL;
 
 	
-
-	if (hud)
-		delete hud;
-	hud = NULL;
 
 	if (bgm)
 		delete bgm;
@@ -265,6 +256,10 @@ Level1State::~Level1State()
 	if (gos_hud)
 		delete gos_hud;
 	gos_hud = NULL;
+
+	if (gos_startmenu)
+		delete gos_startmenu;
+	gos_startmenu = NULL;
 
 	//Delete elements from lists
 }
@@ -309,9 +304,6 @@ void Level1State::init()
 
 	bg = new Background("./Resources/Backgrounds/grassbg1.bmp", 0.1, renderTarget);
 	
-	player = new Player(tileMap, renderTarget);
-	player->setPosition(30, 30);//75, 0
-	player->setVector(0, 0);
 
 	gos_player = new GoS_Player(tileMap, renderTarget);
     gos_player->setPosition(pstartX, pstartY);//75, 0
@@ -385,6 +377,7 @@ void Level1State::init()
 	playerYLock = 105;
 
 	gos_hud = new GoS_HUD(renderTarget, 3, 3);
+	gos_startmenu = new GoS_StartMenu(renderTarget, 8, 8);
 
 	populateEnemies();
 
@@ -836,6 +829,7 @@ void Level1State::draw()
         poof->draw();
     }
 
+	gos_startmenu->draw();
 
 
 
@@ -1072,6 +1066,14 @@ void Level1State::keyPressed(int k)
 			gos_player->bombaAction();
 			break;
 		}
+		case SDLK_RETURN:
+		{	
+			gos_startmenu->setVisible(true);
+			for (int i=0; i<COMBO_LENGTH; i++)
+				printf("%d, ", InputBuffer::data_test[i]);
+			printf("\n");
+			break;
+		}
 	}
 	//tileMap->setPosition((int)x, (int)y);
 	//printf("x: %d, y: %d\n", (int)tileMap->getX(), (int)tileMap->getY());
@@ -1123,6 +1125,11 @@ void Level1State::keyReleased(int k)
 			bgm->stop();
 			level_sounds[LEVEL_LOSE_SFX]->stop(-1);
 			*(GamePanel::isRunningControl) = false;
+            break;
+        }
+		case SDLK_RETURN:
+        {
+            gos_startmenu->setVisible(false);
             break;
         }
     }

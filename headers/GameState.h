@@ -5,9 +5,7 @@
 #include "../headers/GameStateManager.h"
 #include "../headers/Background.h"
 #include "../headers/TileMap.h"
-#include "../headers/Player.h"
 #include "../headers/Enemy.h"
-#include "../headers/HUD.h"
 #include "../headers/Explosion.h"
 #include "../headers/AudioPlayer.h"
 #include "../headers/BgObject.h"
@@ -21,6 +19,7 @@
 #include "../headers/SleepySam.h"
 #include "../headers/ComboMove.h"
 #include "../headers/Letters.h"
+#include "../headers/GoS_StartMenu.h"
 
 #define NUM_OPTIONS 2
 class GameStateManager;
@@ -63,7 +62,7 @@ class Level1State : public GameState
 		TileMap *tileMap;
 		TileMap *bgTileMap;
 		Background *bg;
-		Player *player;
+		//Player *player;
 		GoS_Player *gos_player;
 		BouncyBee *bouncyBee;
 		SleepySam *sleepySam;
@@ -71,8 +70,9 @@ class Level1State : public GameState
 
 		std::list<Enemy*> enemies;
 		std::list<Explosion*> explosions;
-		HUD *hud;
+		//HUD *hud;
 		GoS_HUD *gos_hud;		
+		GoS_StartMenu *gos_startmenu;	
 
 		BgObject *sun, *slime;
 		BgObject *fire[3];

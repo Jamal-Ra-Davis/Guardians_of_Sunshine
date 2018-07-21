@@ -2,7 +2,7 @@ OBJS = 	./src/GuardiansOfSunshine.o ./src/SDL_Helpers.o ./src/GamePanel.o ./src/
 		./src/TileMap.o ./src/Tile.o ./src/MapObject.o ./src/Animation.o ./src/Player.o ./src/FireBall.o ./src/Enemy.o ./src/Slugger.o\
 		./src/HUD.o ./src/Explosion.o ./src/AudioPlayer.o ./src/BgObject.o ./src/GoS_Player.o ./src/Coin.o ./src/TriggerBox.o\
 		./src/GoS_HUD.o ./src/Numbers.o ./src/Bomba.o ./src/BouncyBee.o ./src/Poof.o ./src/HoneyBunny.o ./src/SleepySam.o ./src/ComboMove.o\
-		./src/InputBuffer.o ./src/Letters.o
+		./src/InputBuffer.o ./src/Letters.o ./src/GoS_StartMenu.o
 
 CC = g++
 DEBUG = -g
@@ -126,6 +126,9 @@ InputBuffer.o: $(DS)InputBuffer.cpp $(DH)InputBuffer.h
 
 Letters.o: $(DS)Letters.cpp $(DH)Letters.h $(DH)SDL_Helpers.h
 	$(CC) -c $(CFLAGS) $(DS)Letters.cpp -o $(DS)Letters.o
+
+GoS_HUD.o: $(DS)GoS_StartMenu.cpp $(DH)GoS_StartMenu.h
+	$(CC) -c $(CFLAGS) $(DS)GoS_HUD.cpp -o $(DS)GoS_HUD.o
 
 GuardiansOfSunshine.o: $(DS)GuardiansOfSunshine.cpp $(DH)SDL_Helpers.h $(DH)GamePanel.h
 	$(CC) -c $(CFLAGS) $(DS)GuardiansOfSunshine.cpp -o $(DS)GuardiansOfSunshine.o
