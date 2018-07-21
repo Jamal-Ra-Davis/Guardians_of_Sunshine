@@ -11,12 +11,16 @@ class GoS_StartMenu
 		SDL_Texture *menuBg;
         SDL_Rect menuBgRect;
 	
-		bool visible;
-		//SDL_Texture *playerIcon;
-        //SDL_Rect playerRect;
+		SDL_Texture *comboIcon;
+        SDL_Rect comboRect;
+
+		
+
 
 		//SDL_Texture *bombaIcon;
         //SDL_Rect bombaRect;
+
+		bool visible;
 	
 		SDL_Renderer *renderTarget;
 		//Numbers *scoreTracker;

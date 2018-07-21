@@ -22,6 +22,7 @@ SDL_Texture* LoadTexture(std::string filePath, SDL_Renderer *renderTarget)
     if (texture == NULL)
     {
         printf("Failed to convert surface error: %s\n", SDL_GetError());
+		printf("%s failed to load\n", filePath.c_str());
         SDL_FreeSurface(surface);
         return NULL;
     }

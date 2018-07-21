@@ -1069,9 +1069,6 @@ void Level1State::keyPressed(int k)
 		case SDLK_RETURN:
 		{	
 			gos_startmenu->setVisible(true);
-			for (int i=0; i<COMBO_LENGTH; i++)
-				printf("%d, ", InputBuffer::data_test[i]);
-			printf("\n");
 			break;
 		}
 	}

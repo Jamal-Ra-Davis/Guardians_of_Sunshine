@@ -127,7 +127,7 @@ InputBuffer.o: $(DS)InputBuffer.cpp $(DH)InputBuffer.h
 Letters.o: $(DS)Letters.cpp $(DH)Letters.h $(DH)SDL_Helpers.h
 	$(CC) -c $(CFLAGS) $(DS)Letters.cpp -o $(DS)Letters.o
 
-GoS_HUD.o: $(DS)GoS_StartMenu.cpp $(DH)GoS_StartMenu.h
+GoS_StartMenu.o: $(DS)GoS_StartMenu.cpp $(DH)GoS_StartMenu.h
 	$(CC) -c $(CFLAGS) $(DS)GoS_HUD.cpp -o $(DS)GoS_HUD.o
 
 GuardiansOfSunshine.o: $(DS)GuardiansOfSunshine.cpp $(DH)SDL_Helpers.h $(DH)GamePanel.h
