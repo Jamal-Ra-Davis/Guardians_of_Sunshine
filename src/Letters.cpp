@@ -18,7 +18,8 @@ Letters::Letters(SDL_Renderer *renderTarget_, std::string word_, int spacing_, i
 }
 Letters::~Letters()
 {
-	SDL_DestroyTexture(letterTexture);
+	if (letterTexture)
+		SDL_DestroyTexture(letterTexture);
 	letterTexture = NULL;
 }
 void Letters::draw()
@@ -31,6 +32,11 @@ void Letters::draw()
 	{
 		char c = toupper(word[i]);
 		int idx = c - 65;	
+		if (idx < 0 || idx >= 26)
+		{
+			letterRect.x += LETTER_WIDTH + spacing;
+			continue;
+		}		
 
 		SDL_Rect cropRect = {idx*LETTER_WIDTH, 0, LETTER_WIDTH, LETTER_HEIGHT};
 		SDL_RenderCopy(renderTarget, letterTexture, &cropRect, &letterRect);

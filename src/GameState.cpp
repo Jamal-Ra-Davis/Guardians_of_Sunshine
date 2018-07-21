@@ -411,6 +411,8 @@ void Level1State::init()
 }
 void Level1State::update()
 {
+	//gos_startmenu->update();
+
 	//if (player_died)
 	if (level_start)
 	{
@@ -487,6 +489,7 @@ void Level1State::update()
 			if (gos_player->getX() >= sleepySamX - 21)
 			{
 				reachedSleepySam = true;
+				gos_startmenu->setAllowVisible(false);
 				gos_player->setRight(false);
 				gos_player->setPosition(sleepySamX - 21, gos_player->getY());
 				gos_player->setHold(true);
@@ -504,6 +507,8 @@ void Level1State::update()
 			}
 		}
 	}
+
+	gos_startmenu->update();
 	//printf("Player Hold: %d\n", gos_player->getHold());
 	gos_player->update();
 	comboMove->update();
@@ -971,6 +976,7 @@ void Level1State::reset()
 	player_died = false;
 
 	reachedSleepySam = false;
+	gos_startmenu->setAllowVisible(true);
 	sleepySam->reset();
 	comboMove->reset();
 	bgm->stop();
